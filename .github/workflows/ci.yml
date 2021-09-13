@@ -1,15 +1,34 @@
-name: Build & lint project
+name: Validation
 on: [push]
 jobs:
-  build:
+  validate:
     runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_DATABASE: test_database
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_USER: admin
+          MYSQL_PASSWORD: rootpass
+          MYSQL_ROOT_PASSWORD: rootpass
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Cache Composer dependencies
         uses: actions/cache@v2
         with:
-          path: /tmp/composer-cache
+          path: |
+            "${{ env.COMPOSER_CACHE_DIR }}"
+            $GITHUB_WORKSPACE/vendor
+            $GITHUB_WORKSPACE/docroot/core
+            $GITHUB_WORKSPACE/docroot/libraries
+            $GITHUB_WORKSPACE/docroot/modules/contrib
+            $GITHUB_WORKSPACE/docroot/themes/contrib
+            $GITHUB_WORKSPACE/docroot/profiles/contrib
           key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
       - name: Install dependencies
         uses: php-actions/composer@v6
@@ -21,4 +40,6 @@ jobs:
         with:
           node-version: "14"
       - name: Run BLT Tests
-        run: blt validate
+        run: $GITHUB_WORKSPACE/vendor/bin/blt validate  --environment=ci
+      - name: Run BLT setup
+        run: $GITHUB_WORKSPACE/vendor/bin/blt setup --environment=ci

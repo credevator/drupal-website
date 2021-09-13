@@ -1,0 +1,6 @@
+drupal:
+  db:
+    database: test_database
+    username: admin
+    password: rootpass
+    host: 127.0.0.1
