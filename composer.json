@@ -15,10 +15,17 @@
         }
     ],
     "require": {
+        "acquia/blt": "^13.0",
         "composer/installers": "^1.9",
+        "drupal/admin_toolbar": "^3.0",
         "drupal/core-composer-scaffold": "^9.2",
         "drupal/core-project-message": "^9.2",
-        "drupal/core-recommended": "^9.2"
+        "drupal/core-recommended": "^9.2",
+        "drupal/environment_indicator": "^4.0",
+        "drupal/pathauto": "^1.8",
+        "drupal/redirect": "^1.6",
+        "drupal/seckit": "^2.0",
+        "drupal/shield": "^1.4"
     },
     "conflict": {
         "drupal/drupal": "*"

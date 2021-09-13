@@ -8,3 +8,7 @@ services:
   appserver:
     build:
       - composer install
+tooling:
+  blt:
+    service: appserver
+    cmd: /app/vendor/bin/blt

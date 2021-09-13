@@ -1,0 +1,9 @@
+project:
+  machine_name: credevator
+  human_name: Credevator Site
+  prefix: CD
+drupal:
+  site:
+    mail: mailbox@credevator.com
+  account:
+    mail: mailbox@credevator.com
