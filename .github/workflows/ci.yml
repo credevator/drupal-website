@@ -36,10 +36,7 @@ jobs:
           php_version: 8.0
           php_extensions: gd
           version: 2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: "14"
       - name: Run BLT Tests
-        run: $GITHUB_WORKSPACE/vendor/bin/blt validate  --environment=ci
+        run: $GITHUB_WORKSPACE/vendor/bin/blt validate --environment=ci
       - name: Run BLT setup
         run: $GITHUB_WORKSPACE/vendor/bin/blt setup --environment=ci
