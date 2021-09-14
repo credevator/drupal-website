@@ -16,6 +16,7 @@
     ],
     "require": {
         "acquia/blt": "^13.0",
+        "alexku/blt-github-actions": "dev-master",
         "composer/installers": "^1.9",
         "drupal/admin_toolbar": "^3.0",
         "drupal/core-composer-scaffold": "^9.2",
